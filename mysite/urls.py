@@ -22,11 +22,11 @@ urlpatterns = [
 
     # 127.0.0.1:8000/accounts/login --> local
     # mydjangosite.com/accounts/login --> online
-    path('accounts/login/', auth_views.login, name='login'),
+    path('accounts/login/', auth_views.LoginView.as_view(),name='login'),
 
     # 127.0.0.1:8000/accounts/logout --> local
     # mydjangosite.com/accounts/logout --> online
-    path('accounts/logout/', view=auth_views.logout, name='logout', kwargs={'next_page': 'post_list'}),
+    path('accounts/logout/',auth_views.LogoutView.as_view(next_page='post_list'), name='logout'),
 
     # 127.0.0.1:8000
     path('', include('blog.urls')),
